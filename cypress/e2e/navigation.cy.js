@@ -1,0 +1,17 @@
+describe('page navigation', () => {
+  it('should navigate between pages', () => {
+    cy.visit('http://localhost:5173')
+    // cy.get('header a').contains('About').click()
+    // cy.get('a').contains('About').click()
+    cy.get('[data-cy="header-about-link"]').click()
+    // cy.get('h1').contains('About').should('have.length', 1)
+    cy.location('pathname').should('equal', '/about')
+    // cy.location('pathname').should('eq', '/about')
+    cy.go('back')
+    // cy.get('h1').contains('Home').should('have.length', 1)
+    cy.location('pathname').should('equal', '/')
+    cy.get('[data-cy="header-about-link"]').click()
+    cy.get('[data-cy="header-home-link"]').click()
+    cy.location('pathname').should('equal', '/')
+  })
+})
